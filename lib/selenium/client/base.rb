@@ -48,8 +48,8 @@ module Selenium
       def initialize(*args)
         if args[0].kind_of?(Hash)
           options = args[0]
-          @host = options[:host]
-          @port = options[:port].to_i
+          @host = 'localhost' # options[:host]
+          @port = java.lang.System.getProperty('selenium.client.port').to_i # options[:port].to_i
           @browser_string = options[:browser]
           @browser_url = options[:url]
           @default_timeout_in_seconds = (options[:timeout_in_seconds] || 300).to_i
