@@ -48,8 +48,8 @@ module Selenium
       def initialize(*args)
         if args[0].kind_of?(Hash)
           options = args[0]
-          @host = 'localhost' # options[:host]
-          @port = java.lang.System.getProperty('selenium.client.port').to_i # options[:port].to_i
+          @host = options[:host]
+          @port = options[:port].to_i
           @browser_string = options[:browser]
           @browser_url = options[:url]
           @default_timeout_in_seconds = (options[:timeout_in_seconds] || 300).to_i
@@ -64,6 +64,10 @@ module Selenium
           @default_javascript_framework = :prototype
           @highlight_located_element_by_default = false
         end
+
+        # Override any script-supplied host and port
+        @host = 'localhost'
+        @port = java.lang.System.getProperty('selenium.client.port').to_i
 
         @extension_js = ""
         @session_id = nil
