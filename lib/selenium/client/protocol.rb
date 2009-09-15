@@ -87,10 +87,10 @@ module Selenium
         http.read_timeout = default_timeout_in_seconds
         response = http.post('/selenium-server/driver/', data, HTTP_HEADERS)
         # puts "RESULT: #{response.body.inspect}\n"
-        if response.body[0..2] == "OK,"
+        if response.body[0..1] == "OK"
             [ response.body[0..1], response.body[3..-1] ]
         else
-            [ "", response]
+            [ "", response.body ]
         end
       end
      
